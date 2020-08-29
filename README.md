@@ -1,4 +1,4 @@
-# to-watch
+# Task-Master
 Autor: CotherArt
 
-List management software
+Software to make lists of tasks
