@@ -61,7 +61,7 @@ class TaskMaster:
         else:
             print("List {} not found".format(list_name))
 
-    def ls(self):  # imprime la lista
+    def ls(self):  # imprime la lista actual
         if len(self.get_current_list()) == 0:
             print('List "{}" is empty'.format(self.current_list))
             return
@@ -72,7 +72,7 @@ class TaskMaster:
             print('Name: {}\nChek: {}'.format(i.name, i.ischeck()))
         print('--------------')
 
-    def lst(self):  # Imprime el nombre de todas las listas
+    def ls_lists(self):  # Imprime el nombre de todas las listas
         print('[Listas]')
         for i in self.listas.keys():
             print('>', i)
