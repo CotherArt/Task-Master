@@ -7,7 +7,7 @@ from os import path
 from pathlib import Path
 
 
-class ToWatch:
+class TaskMaster:
 
     def __init__(self):
         self.listas = {}
@@ -21,17 +21,17 @@ class ToWatch:
             self.current_list = 'deflist'
             self.save()
 
-    def new_list(self, list_name):
+    def new_list(self, list_name):  # Añade una lista
         self.listas[list_name] = []
         print('List "{}" added'.format(list_name))
 
-    def get_current_list(self):
+    def get_current_list(self):  # Retorna la lista actual
         if self.current_list == '':
             self.current_list = str(list(self.listas.keys())[0])
         return self.listas.get(self.current_list)
 
-    def set_current_list(self, list_name):
-        if list_name in self.listas:
+    def set_current_list(self, list_name):  # Selecciona una lista
+        if list_name in self.listas.keys():
             self.current_list = list_name
         else:
             print('list name "{}" not found'.format(list_name))
@@ -40,18 +40,31 @@ class ToWatch:
         item = Item(msg)
         self.get_current_list().append(item)
 
-    def rm(self, msg):  # elimina un item de la lista
+    def rm_item(self, msg):  # elimina un item de la lista
         for i in self.get_current_list():
             if i.name == msg:
                 self.get_current_list().remove(i)
                 print('Element "{}" removed from "{}"'.format(i.name, self.current_list))
-                pass
+                return
         print('Item "{}" not found in "{}" list'.format(msg, self.current_list))
+
+    def rm_list(self, list_name):  # Elimina una lista
+        yes_no = input("List {} will be removed [Yes/No]".format(list_name)).upper()
+        print(yes_no)
+        if yes_no != "YES":
+            print("owo")
+            return
+
+        if list_name in self.listas.keys():
+            del self.listas[list_name]
+            print("List {} removed".format(list_name))
+        else:
+            print("List {} not found".format(list_name))
 
     def ls(self):  # imprime la lista
         if len(self.get_current_list()) == 0:
             print('List "{}" is empty'.format(self.current_list))
-            pass
+            return
 
         print('[{}]'.format(self.current_list))
         for i in self.get_current_list():
@@ -79,4 +92,4 @@ class ToWatch:
 
 
 if __name__ == '__main__':
-    tw = ToWatch()
+    tw = TaskMaster()
