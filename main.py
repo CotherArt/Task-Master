@@ -62,7 +62,8 @@ class TaskMaster:
             print("List {} not found".format(list_name))
 
     def ls(self):  # imprime la lista actual
-        if len(self.get_current_list()) == 0:
+        self.get_current_list()
+        if len(self.current_list) == 0:
             print('List "{}" is empty'.format(self.current_list))
             return
 
@@ -92,4 +93,4 @@ class TaskMaster:
 
 
 if __name__ == '__main__':
-    tw = TaskMaster()
+    tm = TaskMaster()
