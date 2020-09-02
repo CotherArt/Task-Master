@@ -2,7 +2,7 @@
 __author__ = 'CotherArt'
 
 
-class Item:
+class Task:
 
     def __init__(self, name):
         self.name = name
